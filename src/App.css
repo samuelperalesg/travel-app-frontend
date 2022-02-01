@@ -1,38 +1,74 @@
-.App {
+* {
+  margin: 0;
+}
+
+main {
   text-align: center;
+  vertical-align: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#footerContainer {
+  background-color:#f1faee;
+  min-height: 10%;
+  grid-area:footer;
   display: flex;
-  flex-direction: column;
+  position:relative;
+  bottom: 0;
+  zoom: 0.78;
+}
+
+#logoAndName {
+  display:flex;
+  margin-top: 5px;
+  font-size: 15px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #333333;
 }
 
-.App-link {
-  color: #61dafb;
+#DumbbellImgFooter {
+  position:relative;
+  top: 0;
+  width: 30px;
+  height: 20px;
+  max-height: 40%;
+  margin:10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#copyrightFooter {
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  font-size:15px;
+  margin:10px;
+  color: #333333;
+}
+
+#linkedinImg {
+  position: absolute;
+  top:25%;
+  right:15px;
+  height:55%;
+  width:40px;
+  max-height: 50px;
+  max-width: 50px;
+  min-width: 50px;
+  min-height: 50px;
+}
+
+#gitHubImg {
+  position: absolute;
+  top:15%;
+  right:70px;
+  width:50px;
+  height:70%;
+  max-height: 68px;
+  max-width: 60px;
+  min-width: 60px;
+  min-height: 68px;
 }
