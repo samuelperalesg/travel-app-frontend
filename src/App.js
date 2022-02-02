@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import Show from './components/show';
 import Login from './components/login';
 import SignUp from './components/signup';
+import Index from './components/index';
 import './App.css';
 
 // Random background images for homepage
@@ -21,9 +22,10 @@ function App() {
     <main>
       <Nav />
       {/*<Home id="home" img={background} />*/}
+      <Index />
       {/* <Show /> */}
       {/* <Login /> */}
-      <SignUp />
+      {/* <SignUp /> */}
       <Footer />
     </main>
   );
