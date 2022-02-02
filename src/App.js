@@ -49,6 +49,7 @@ function App() {
       <Show />
       <Login />
       <SignUp />
+
       <Footer />
     </main>
   );
