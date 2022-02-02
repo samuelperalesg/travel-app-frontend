@@ -72,3 +72,53 @@ a, a:hover, a:focus, a:active {
   min-width: 60px;
   min-height: 68px;
 }
+
+#login {
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  min-height: 700px;
+}
+
+#contents {
+  border-style: solid;
+  padding: 100px;
+  border-color: #457b9d;
+  border-width: thick;
+  color: #457b9d;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#loginContent {
+  display:flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#loginHeader {
+  border-bottom: solid;
+  border-color: #457b9d;
+  border-width: thick;
+  margin-bottom: 10px;
+}
+
+#signUp, #a {
+  width: 100%;
+}
+
+#loginButton, #signUp {
+  width: 100%;
+  background-color: #457b9d;
+  padding: 8px;
+  color: white;
+}
