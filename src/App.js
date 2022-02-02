@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import Home from './components/home';
 import Nav from './components/nav';
 import Footer from './components/footer';
+import Show from './components/show';
+import Login from './components/login';
+import SignUp from './components/signup';
 import './App.css';
 
 // Random background images for homepage
@@ -17,7 +20,10 @@ function App() {
   return (
     <main>
       <Nav />
-      <Home id="home" img={background} />
+      {/*<Home id="home" img={background} />*/}
+      {/* <Show /> */}
+      {/* <Login /> */}
+      <SignUp />
       <Footer />
     </main>
   );
