@@ -6,7 +6,7 @@ import Show from "../pages/show";
 import Footer from "../components/footer";
 import FadeIn from "react-fade-in";
 
-function Home({ img }, props) {
+function Home(props) {
   // fetch backend data with locations
   const [locations, setLocations] = useState(null);
 
@@ -76,7 +76,7 @@ function Home({ img }, props) {
         <Route exact path="/">
           <div
             style={{
-              background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${img}) top left / cover no-repeat`,
+              background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.img}) top left / cover no-repeat`,
               color: "rgba(241, 250, 238, 0.9)",
               letterSpacing: "2px",
               fontSize: "50px",

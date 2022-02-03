@@ -53,7 +53,7 @@ function Index(props) {
 
   const loaded = () => {
     return props.locations.map((location) => (
-      <>
+      <div key={location._id} className="location">
         <div
           id="indexPopular"
           style={{
@@ -129,22 +129,25 @@ function Index(props) {
           }}
         >
           <FadeIn transitionDuration="1000" delay="2100">
-            <div id="CatalogItem" onClick="--- ADD ON CLICK ROUTE HERE ---">
-              <img
-                src="https://drscdn.500px.org/photo/178159719/m%3D900/52e52da54ffba9e38b929962dc1c7559"
-                style={{
-                  maxWidth: "300px",
-                  maxHeight: "170px",
-                  borderRadius: "13%",
-                  paddingRight: "5px",
-                }}
-                alt=""
-              />
-              <h5 style={{ letterSpacing: "1.5px" }}>Catalog Item, Location</h5>
+            <div id="CatalogItem">
+            <Link to={`/locations/${location._id}`}>
+                <img
+                  src={location.image}
+                  style={{
+                    maxWidth: "300px",
+                    maxHeight: "170px",
+                    borderRadius: "13%",
+                    paddingRight: "5px",
+                  }}
+                  alt={location.name}
+                />
+              </Link>
+
+              <h5 style={{ letterSpacing: "1.5px" }}>{location.name}</h5>
             </div>
           </FadeIn>
         </div>
-      </>
+      </div>
     ));
   };
 
