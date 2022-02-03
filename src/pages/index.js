@@ -83,25 +83,23 @@ function Index(props) {
         >
           <FadeIn transitionDuration="1000" delay="1050">
             <div id="popularItem">
-
               <Link to={`/locations/${location._id}`}>
-              <img
-                src={location.image}
-                style={{
-                  maxWidth: "300px",
-                  maxHeight: "170px",
-                  borderRadius: "13%",
-                  paddingRight: "5px",
-                }}
-                alt={location.name}
-              />
+                <img
+                  src={location.image}
+                  style={{
+                    maxWidth: "300px",
+                    maxHeight: "170px",
+                    borderRadius: "13%",
+                    paddingRight: "5px",
+                  }}
+                  alt={location.name}
+                />
               </Link>
 
               <h5 style={{ letterSpacing: "1.5px" }}>{location.name}</h5>
             </div>
           </FadeIn>
         </div>
-
 
         <div
           id="indexCatalog"
@@ -147,73 +145,74 @@ function Index(props) {
           </FadeIn>
         </div>
       </>
-    ))
-  }
-  
+    ));
+  };
+
   const loading = () => {
-    return <h1>Hold on, give me a sec...</h1>
-  }
+    return <h1>Hold on, give me a sec...</h1>;
+  };
 
   return (
-    <div
-      style={{
-        minHeight: "90%",
-        backgroundColor: "#F8F0E3",
-      }}
-    >
-      <FadeIn transitionDuration="1000" delay="350">
-        <div id="indexHeader">
-          <h1
-            style={{
-              letterSpacing: "2px",
-              color: "#333333",
-              padding: "50px",
-              fontSize: "60px",
-            }}
-          >
-            LOCATIONS
-          </h1>
-        </div>
-
-        <div>
-          {
-            <form
-            onSubmit={handleSubmit}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
+    <>
+      <div
+        style={{
+          minHeight: "90%",
+          backgroundColor: "#F8F0E3",
+        }}
+      >
+        <FadeIn transitionDuration="1000" delay="350">
+          <div id="indexHeader">
+            <h1
+              style={{
+                letterSpacing: "2px",
+                color: "#333333",
+                padding: "50px",
+                fontSize: "60px",
+              }}
             >
-              <input
-                type="text"
-                value={newForm.name}
-                name="name"
-                placeholder="name"
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                value={newForm.image}
-                name="image"
-                placeholder="image URL"
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                value={newForm.notes}
-                name="notes"
-                placeholder="notes"
-                onChange={handleChange}
-              />
-              <input type="submit" value="Create Location" />
-            </form>
-          }
-        </div>
+              LOCATIONS
+            </h1>
+          </div>
 
-        { props.locations ? loaded() : loading() }
+          <div>
+            {
+              <form
+                onSubmit={handleSubmit}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <input
+                  type="text"
+                  value={newForm.name}
+                  name="name"
+                  placeholder="name"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  value={newForm.image}
+                  name="image"
+                  placeholder="image URL"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  value={newForm.notes}
+                  name="notes"
+                  placeholder="notes"
+                  onChange={handleChange}
+                />
+                <input type="submit" value="Create Location" />
+              </form>
+            }
+          </div>
 
-      </FadeIn>
-    </div>
+          {props.locations ? loaded() : loading()}
+        </FadeIn>
+      </div>
+    </>
   );
 }
 

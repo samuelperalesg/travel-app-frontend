@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth } from './services/firebase'
+import { auth } from "./services/firebase";
 import "./App.css";
 import Nav from "./components/nav";
 import Home from "./components/home";
@@ -27,21 +27,21 @@ function App() {
     );
   }, []);
 
-// use state for user
+  // use state for user
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-   const unsubscribe = auth.onAuthStateChanged(user => setUser(user));
+    const unsubscribe = auth.onAuthStateChanged((user) => setUser(user));
 
-   return () => {
-     unsubscribe();
-   }
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
     <main>
-      <Nav user={user}/>
-      <Home id="home" img={background} user={user}/> 
+      <Nav user={user} />
+      <Home id="home" img={background} user={user} />
     </main>
   );
 }
