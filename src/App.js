@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { auth } from './services/firebase'
-import Home from "./components/home";
-import Nav from "./components/nav";
-import Footer from "./components/footer";
-import Show from "./components/show";
 import "./App.css";
+import Nav from "./components/nav";
+import Home from "./components/home";
 
 // Random background images for homepage
 const pictures = [
@@ -43,9 +41,7 @@ function App() {
   return (
     <main>
       <Nav user={user}/>
-      <Home id="home" img={background} /> 
-      <Show />
-      <Footer />
+      <Home id="home" img={background} user={user}/> 
     </main>
   );
 }

@@ -1,5 +1,5 @@
-import React from 'react';
 import { login, logout } from '../services/firebase'
+import { Link } from 'react-router-dom'
 import FadeIn from 'react-fade-in';
 
 function Nav(props) {
@@ -12,13 +12,25 @@ function Nav(props) {
       height: '10%',
       backgroundColor: '#f1faee',
     }}>
-      <FadeIn transitionDuration="1000"><a href="#"><b>HOME</b></a></FadeIn>
-      <FadeIn transitionDuration="1000"><a href="#"><b>LOCATIONS</b></a></FadeIn>
+
+      <Link to="/">
+        <FadeIn transitionDuration="1000"><a href="#"><b>HOME</b></a></FadeIn>
+      </Link>
+
+      <Link to="/locations">
+        <FadeIn transitionDuration="1000"><a href="#"><b>LOCATIONS</b></a></FadeIn>
+      </Link>
+
       {
         props.user ?
         <>
         <h4>Welcome, {props.user.displayName}</h4>
-        <img src={props.user.photoURL}/>
+        <img src={props.user.photoURL}
+        style={{
+          height: "5rem",
+          borderRadius: "50%",
+        }}
+        />
         <FadeIn transitionDuration="1000"><a href="#" onClick={logout} ><b>LOGOUT</b></a></FadeIn>
         </>
         :
