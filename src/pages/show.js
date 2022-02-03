@@ -3,8 +3,8 @@ import FadeIn from 'react-fade-in';
 function Show(props){
 
   const id = props.match.params.id
-  const locations = props?.locations
-  const location = locations ? locations.find(l => l._id === id) : null
+  const locations = props.locations
+  const location = locations.find(l => l._id === id)
 
 const removeLocation = () => {
   props.deleteLocations(location._id)

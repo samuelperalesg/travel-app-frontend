@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <main>
+    <main className="App">
       <Nav user={user} />
       <Home id="home" img={background} user={user} />
     </main>

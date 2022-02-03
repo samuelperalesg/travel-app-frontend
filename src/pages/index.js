@@ -149,7 +149,7 @@ function Index(props) {
   };
 
   const loading = () => {
-    return <h1>Hold on, give me a sec...</h1>;
+    return <h1 style={{margin: "2rem"}}>Loading...</h1>;
   };
 
   return (
@@ -208,8 +208,8 @@ function Index(props) {
               </form>
             }
           </div>
-
-          {props.locations ? loaded() : loading()}
+            
+            {props.locations ? loaded() : loading()}
         </FadeIn>
       </div>
     </>
