@@ -158,7 +158,7 @@ function Index(props) {
           minHeight: "90%",
           backgroundColor: "#F8F0E3",
         }}
-      >
+        >
         <FadeIn transitionDuration="1000" delay="350">
           <div id="indexHeader">
             <h1
@@ -173,40 +173,6 @@ function Index(props) {
             </h1>
           </div>
 
-          <div>
-            {
-              <form
-                onSubmit={handleSubmit}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <input
-                  type="text"
-                  value={newForm.name}
-                  name="name"
-                  placeholder="name"
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  value={newForm.image}
-                  name="image"
-                  placeholder="image URL"
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  value={newForm.notes}
-                  name="notes"
-                  placeholder="notes"
-                  onChange={handleChange}
-                />
-                <input type="submit" value="Create Location" />
-              </form>
-            }
-          </div>
           <FadeIn transitionDuration="1000" delay="1850">
             <h1 style={{ letterSpacing: "2px", color: "#333333", margin: "20px" }}>
               <i>CATALOG</i>
@@ -214,6 +180,69 @@ function Index(props) {
           </FadeIn>
             {props.locations ? loaded() : loading()}
         </FadeIn>
+
+        <FadeIn transitionDuration="1000" delay="2000">
+          <h3>Can't find a location?</h3>
+        </FadeIn>
+        <FadeIn transitionDuration="1000" delay="3000">
+          <div style={{display:'flex', justifyContent:'center',}}>
+              {
+                <form
+                  onSubmit={handleSubmit}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: 'column',
+                    width: '30%',
+                  }}
+                >
+                  <input
+                    type="text"
+                    value={newForm.name}
+                    name="name"
+                    placeholder="name"
+                    onChange={handleChange}
+                    style={{textAlign:'center'}}
+                  />
+                  <input
+                    type="text"
+                    value={newForm.image}
+                    name="image"
+                    placeholder="image URL"
+                    onChange={handleChange}
+                    style={{textAlign:'center'}}
+                  />
+                  <input
+                    type="text"
+                    value={newForm.notes}
+                    name="notes"
+                    placeholder="notes"
+                    onChange={handleChange}
+                    style={{textAlign:'center'}}
+                  />
+                  <input 
+                    type="submit" 
+                    value="Create Location"
+                    style={{
+                      display: 'inline-block',
+                      outline: '0',
+                      cursor: 'pointer',
+                      border: '0',
+                      padding: '7px 16px',
+                      minHeight: '36px',
+                      minWidth: '36px',
+                      color: '#ffffff',
+                      background: '#008060',
+                      borderRadius: '4px',
+                      fontWeight: '500',
+                      fontSize: '14px',
+                      boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset',
+                    }}
+                  />
+                </form>
+              }
+            </div>
+          </FadeIn>
       </div>
     </>
   );
