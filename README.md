@@ -1,6 +1,6 @@
 Our Vacation Planner is a site that is mainly used to add any of your planned future travels/dream destinations. 
 
-TECHNOLOGIES USED
+TECHNOLOGIES USED<br />
 React
 JavaScript
 CSS
