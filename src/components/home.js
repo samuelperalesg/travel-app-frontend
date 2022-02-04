@@ -10,7 +10,7 @@ function Home(props) {
   // fetch backend data with locations
   const [locations, setLocations] = useState(null);
 
-  const URL = "http://localhost:4000/locations/";
+  const URL = "https://travel-all-samp.herokuapp.com/locations";
 
   const getLocationsRef = useRef();
 

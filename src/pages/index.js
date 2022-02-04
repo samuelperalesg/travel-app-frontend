@@ -63,7 +63,7 @@ function Index(props) {
             paddingLeft: "20px",
           }}
         >
-          <FadeIn transitionDuration="1000" delay="700">
+          {/* <FadeIn transitionDuration="1000" delay="700">
             <h1 style={{ letterSpacing: "2px", color: "#333333" }}>
               <i>TRENDING</i>
             </h1>
@@ -109,12 +109,8 @@ function Index(props) {
             width: "100%",
             paddingLeft: "20px",
           }}
-        >
-          <FadeIn transitionDuration="1000" delay="1850">
-            <h1 style={{ letterSpacing: "2px", color: "#333333" }}>
-              <i>CATALOG</i>
-            </h1>
-          </FadeIn>
+        > */}
+          
         </div>
 
         <div
@@ -211,7 +207,11 @@ function Index(props) {
               </form>
             }
           </div>
-            
+          <FadeIn transitionDuration="1000" delay="1850">
+            <h1 style={{ letterSpacing: "2px", color: "#333333", margin: "20px" }}>
+              <i>CATALOG</i>
+            </h1>
+          </FadeIn>
             {props.locations ? loaded() : loading()}
         </FadeIn>
       </div>
