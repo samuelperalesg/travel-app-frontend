@@ -25,12 +25,7 @@ function Nav(props) {
         props.user ?
         <>
         <h4>Welcome, {props.user.displayName}</h4>
-        <img src={props.user.photoURL}
-        style={{
-          height: "5rem",
-          borderRadius: "50%",
-        }}
-        />
+        <img src={props.user.photoURL} style={{ height: "5rem", borderRadius: "50%",}} alt=''/>
         <FadeIn transitionDuration="1000"><a href="#" onClick={logout} ><b>LOGOUT</b></a></FadeIn>
         </>
         :

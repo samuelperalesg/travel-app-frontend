@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import FadeIn from "react-fade-in";
 
-{
+
   /* 
   How the transition timers work: 
 
@@ -24,7 +24,6 @@ import FadeIn from "react-fade-in";
         5a. 1850 + 350 (because new box) + 100MS + 100MS + 100MS + 100MS
         5b. so now the total MS is at 2500 MS. 
 */
-}
 
 function Index(props) {
   const [newForm, setNewForm] = useState({

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { auth } from "./services/firebase";
 import "./App.css";
 import Nav from "./components/nav";
@@ -21,7 +21,7 @@ function App() {
     "https://images.hdqwalls.com/download/maldives-tl-2880x1800.jpg"
   );
 
-  useEffect(() => {
+  useRef(() => {
     setBackground(
       (background = pictures[Math.floor(Math.random() * pictures.length)])
     );
@@ -30,7 +30,7 @@ function App() {
   // use state for user
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
+  useRef(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => setUser(user));
 
     return () => {
@@ -41,7 +41,7 @@ function App() {
   return (
     <main className="App">
       <Nav user={user} />
-      <Home id="home" img={background} user={user} />
+      <Home id="home" img={background} user={user} alt=""/>
     </main>
   );
 }
