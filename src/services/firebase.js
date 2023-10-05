@@ -1,31 +1,26 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAzVh9nu676MPC3NMor0yZA6kRRBU-OU_M",
-  authDomain: "worldtraveler-c4dba.firebaseapp.com",
-  projectId: "worldtraveler-c4dba",
-  storageBucket: "worldtraveler-c4dba.appspot.com",
-  messagingSenderId: "80454388967",
-  appId: "1:80454388967:web:cb0f8428f5649a99dce642"
-}
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
 
-// activate firebase app
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-// configure settings
-const auth = firebase.auth();
+const provider = new GoogleAuthProvider();
 
-// set up provider(s)
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// set up auth functions
 function login() {
-    return auth.signInWithPopup(provider);
+    return signInWithPopup(auth, provider);
 }
 
 function logout() {
-    return auth.signOut();
+    return signOut(auth);
 }
 
 export { login, logout, auth };

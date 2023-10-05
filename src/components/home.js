@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import Index from "../pages/index";
@@ -7,69 +7,91 @@ import Footer from "../components/footer";
 import FadeIn from "react-fade-in";
 
 function Home(props) {
-  // fetch backend data with locations
+  // State and URL setup
   const [locations, setLocations] = useState(null);
+  const URL = process.env.REACT_APP_URL;
 
-  const URL = "https://travel-all-samp.herokuapp.com/locations";
+  // useEffect hook to fetch data upon user state change
+  useEffect(() => {
+    const getLocations = async () => {
+      if (!props.user) return;
 
-  const getLocationsRef = useRef();
+      const token = await props.user.getIdToken();
+      const response = await fetch(URL, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
 
-  const getLocations = async () => {
-    if (!props.user) return;
+      const data = await response.json();
+      setLocations(data);
+    };
 
-    const token = await props.user.getIdToken();
-
-    const response = await fetch(URL, {
-      method: "GET",
-      headers: {
-        "Authorization": "Bearer " + token,
-      },
-    });
-
-    const data = await response.json();
-    setLocations(data);
-  };
+    if (props.user) {
+      getLocations();
+    } else {
+      setLocations(null);
+    }
+  }, [props.user, URL]);
 
   // Create a location using fetch
-  const createLocations = async (location) => {
+  const createLocation = async (location) => {
     if (!props.user) return;
 
     const token = await props.user.getIdToken();
-    console.log(token);
-
     await fetch(URL, {
       method: "POST",
       headers: {
         "Content-Type": "Application/JSON",
-        "Authorization": "Bearer " + token,
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify(location),
     });
 
-    getLocations();
+    // After creation, refresh the list
+    // This can be improved by either not calling this function or using context, etc.
+    if (props.user) {
+      const token = await props.user.getIdToken();
+      const response = await fetch(URL, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      const data = await response.json();
+      setLocations(data);
+    }
   };
 
-  const deleteLocations = async (id) => {
+  // Delete a location
+  const deleteLocation = async (id) => {
     if (!props.user) return;
 
-    await fetch(URL + id, {
+    const response = await fetch(URL + id, {
       method: "DELETE",
     });
-    getLocations();
+
+    if (response.status === 403) {
+      alert("You do not have permission to delete this location.");
+      return;
+    }
+
+    // After deletion, refresh the list
+    if (props.user) {
+      const token = await props.user.getIdToken();
+      const response = await fetch(URL, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      const data = await response.json();
+      setLocations(data);
+    }
   };
 
-  useEffect(() => {
-    getLocationsRef.current = getLocations;
-  });
-
-  useEffect(() => {
-    if (props.user) {
-      getLocationsRef.current();
-    } else {
-      setLocations(null);
-    }
-  }, [props.user]);
-
+  // Render component
   return (
     <>
       <Switch>
@@ -104,7 +126,7 @@ function Home(props) {
           <Index
             user={props.user}
             locations={locations}
-            createLocations={createLocations}
+            createLocation={createLocation}
           />
         </Route>
 
@@ -114,7 +136,7 @@ function Home(props) {
             props.user ? (
               <Show
                 locations={locations}
-                deleteLocations={deleteLocations}
+                deleteLocation={deleteLocation}
                 {...rp}
               />
             ) : (

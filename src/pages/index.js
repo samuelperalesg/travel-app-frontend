@@ -41,7 +41,7 @@ function Index(props) {
 
     event.preventDefault();
 
-    props.createLocations(newForm);
+    props.createLocation(newForm);
 
     setNewForm({
       name: "",

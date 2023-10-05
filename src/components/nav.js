@@ -1,38 +1,60 @@
-import { login, logout } from '../services/firebase'
-import { Link } from 'react-router-dom'
+import { login as firebaseLogin, logout as firebaseLogout } from '../services/firebase';
+import { Link } from 'react-router-dom';
 import FadeIn from 'react-fade-in';
 
-function Nav(props) {
+function Nav({ user }) {
+  const handleLogin = async () => {
+    try {
+      await firebaseLogin();
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await firebaseLogout();
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
-    <nav style={{
-      color: '#333333',
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      height: '10%',
-      backgroundColor: '#f1faee',
-    }}>
+    <nav className="nav-navbar">
+      <div className="nav-content">
+        <ul className="nav-link-list">
+          <li className="nav-link-item">
+            <Link to="/" className="nav-text-link">
+              <FadeIn transitionDuration="1000">HOME</FadeIn>
+            </Link>
+          </li>
+          <li className="nav-link-item">
+            <Link to="/locations" className="nav-text-link">
+              <FadeIn transitionDuration="1000">LOCATIONS</FadeIn>
+            </Link>
+          </li>
+        </ul>
 
-      <Link to="/">
-        <FadeIn transitionDuration="1000"><a href="#"><b>HOME</b></a></FadeIn>
-      </Link>
-
-      <Link to="/locations">
-        <FadeIn transitionDuration="1000"><a href="#"><b>LOCATIONS</b></a></FadeIn>
-      </Link>
-
-      {
-        props.user ?
-        <>
-        <h4>Welcome, {props.user.displayName}</h4>
-        <img src={props.user.photoURL} style={{ height: "5rem", borderRadius: "50%",}} alt=''/>
-        <FadeIn transitionDuration="1000"><a href="#" onClick={logout} ><b>LOGOUT</b></a></FadeIn>
-        </>
-        :
-        <FadeIn transitionDuration="1000"><a href="#" onClick={login} ><b>LOGIN</b></a></FadeIn>
-      }
+        {user ? (
+          <div className="nav-user-section">
+            <h4 className="nav-user-name">Welcome, {user.displayName}</h4>
+            <img 
+              src={user.photoURL} 
+              className="nav-userImage" 
+              alt="User Profile"
+            />
+            <FadeIn transitionDuration="1000">
+              <button className='nav-login-logout-btn' onClick={handleLogout}>LOGOUT</button>
+            </FadeIn>
+          </div>
+        ) : (
+          <FadeIn transitionDuration="1000">
+            <button className='nav-login-logout-btn' onClick={handleLogin}>LOGIN</button>
+          </FadeIn>
+        )}
+      </div>
     </nav>
-  )
+  );
 }
 
 export default Nav;

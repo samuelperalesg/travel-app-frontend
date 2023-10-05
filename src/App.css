@@ -1,3 +1,4 @@
+/* 1. Basic and Reset Styles */
 * {
   margin: 0;
 }
@@ -13,6 +14,81 @@ a, a:hover, a:focus, a:active {
   color: inherit;
 }
 
+/* 2. Navbar Component Styles */
+.nav-navbar {
+  color: #333333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+  background-color: #f1faee;
+  padding: 0 2rem; 
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-link-list {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link-item {
+  list-style: none;
+  font-family: 'Arial', sans-serif;
+  color: #457b9d;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-login-logout-btn {
+  font-family: 'Arial', sans-serif;
+  color: #457b9d;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  border: 2px solid #457b9d;
+}
+
+.nav-link-item:hover, .nav-login-logout-btn:hover {
+  background-color: #457b9d;
+  color: #f1faee;
+  transform: scale(1.05); 
+}
+
+.nav-user-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
+.nav-user-name {
+  font-family: 'Helvetica', sans-serif;
+  margin-right: 10px;
+  color: #457b9d;
+}
+
+.nav-userImage {
+  height: 4rem;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-userImage:hover {
+  transform: scale(1.1); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* 3. Footer Component */
 #footerContainer {
   background-color:#f1faee;
   min-height: 10%;
@@ -71,54 +147,4 @@ a, a:hover, a:focus, a:active {
   max-width: 60px;
   min-width: 60px;
   min-height: 68px;
-}
-
-#login {
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  flex-direction: column;
-  height: 80vh;
-  min-height: 700px;
-}
-
-#contents {
-  border-style: solid;
-  padding: 100px;
-  border-color: #457b9d;
-  border-width: thick;
-  color: #457b9d;
-  display:flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  justify-content:center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#loginContent {
-  display:flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content:center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#loginHeader {
-  border-bottom: solid;
-  border-color: #457b9d;
-  border-width: thick;
-  margin-bottom: 10px;
-}
-
-#signUp, #a {
-  width: 100%;
-}
-
-#loginButton, #signUp {
-  width: 100%;
-  background-color: #457b9d;
-  padding: 8px;
-  color: white;
 }
