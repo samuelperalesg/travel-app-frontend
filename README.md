@@ -1,4 +1,4 @@
-[BACKEND CODE](https://github.com/samuelperalesg/travel-app-backend)
+[BACKEND LINK](https://github.com/samuelperalesg/travel-app-backend)
 
 Our Vacation Planner is a site that is mainly used to add any of your planned future travels/dream destinations. 
 
