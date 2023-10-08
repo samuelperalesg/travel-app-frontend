@@ -14,7 +14,18 @@ a, a:hover, a:focus, a:active {
   color: inherit;
 }
 
-/* 2. Navbar Component Styles */
+body, html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: rgba(0, 0, 0, 0.8); /* This is the unified opaque background */
+  overflow-x: hidden;
+}
+
+/* 2. Nav Component */
 .nav-navbar {
   color: #333333;
   display: flex;
@@ -147,4 +158,94 @@ a, a:hover, a:focus, a:active {
   max-width: 60px;
   min-width: 60px;
   min-height: 68px;
+}
+
+/* 4. Home Background */
+.home-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  color: rgba(241, 250, 238, 0.9);
+  font-family: 'Helvetica Neue', sans-serif;
+  border-bottom: none; 
+  z-index: 1;
+  background: none; /* remove background */
+  position: relative;
+}
+
+.home-background-image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  margin-top: 1.5rem;
+  width: 93%;
+  height: 95%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  filter: none;
+}
+
+.home-title h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home-subtitle {
+  color: #FFFFFF; /* White color for high contrast */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow to make text pop */
+  background-color: rgba(5, 56, 73, 0.8); /* Semi-transparent black background for better visibility */
+  padding: 5px 15px; /* Some padding to give the background some space around the text */
+  border-radius: 5px; /* Rounded corners for aesthetic appeal */
+  display: inline-block; /* So the background hugs the text more closely */
+}
+
+
+/* 5. Recommendation Section */
+.rec-image {
+  max-width: 60%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+
+.rec-destination-name {
+  font-size: 1.5rem;  /* increased font size for better visibility */
+  color: #555;
+  font-weight: 600;  /* adjusted weight for clarity */
+}
+
+.rec-section {
+  padding: 2rem 4rem;
+  text-align: center;
+  background: none; /* remove background */
+  margin: -2rem 0 2rem 0;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.rec-title {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-family: 'Young Serif', serif;
+}
+
+.layered-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1; 
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
 }
