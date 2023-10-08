@@ -101,64 +101,65 @@ body {
 
 /* 3. Footer Component */
 #footerContainer {
-  background-color:#f1faee;
-  min-height: 10%;
-  grid-area:footer;
+  padding: .6rem 1rem;
   display: flex;
-  position:relative;
-  bottom: 0;
-  zoom: 0.78;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#footerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#leftColumn {
+  display: grid;
+  grid-template-rows: auto auto;
 }
 
 #logoAndName {
-  display:flex;
-  margin-top: 5px;
-  font-size: 15px;
-  align-items: center;
+  font-size: 1rem;
   color: #333333;
+  margin-bottom: 0.5rem;
+  font-size: .7rem;
 }
 
-#DumbbellImgFooter {
-  position:relative;
-  top: 0;
-  width: 30px;
-  height: 20px;
-  max-height: 40%;
-  margin:10px;
-}
-
-#copyrightFooter {
-  position: absolute;
-  bottom: 0;
-  left: 2px;
-  font-size:15px;
-  margin:10px;
-  color: #333333;
+#socialLinks {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
 }
 
 #linkedinImg {
-  position: absolute;
-  top:25%;
-  right:15px;
-  height:55%;
-  width:40px;
-  max-height: 50px;
-  max-width: 50px;
-  min-width: 50px;
-  min-height: 50px;
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease-in-out;
 }
 
-#gitHubImg {
-  position: absolute;
-  top:15%;
-  right:70px;
-  width:50px;
-  height:70%;
-  max-height: 68px;
-  max-width: 60px;
-  min-width: 60px;
-  min-height: 68px;
+#gitHubImg{
+  width: 70px;
+  height: 70px;
+  transition: transform 0.3s ease-in-out;
 }
+
+#linkedinImg:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#gitHubImg:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#copyrightFooter {
+  font-size: 0.8rem;
+  color: #333333;
+}
+
 
 /* 4. Home Background */
 .home-background {
