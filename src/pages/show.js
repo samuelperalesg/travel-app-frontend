@@ -1,70 +1,53 @@
-import FadeIn from 'react-fade-in';
+import React from "react";
+import PropTypes from "prop-types"; // Add this import for prop type checking
+import FadeIn from "react-fade-in";
 
-function Show(props){
+function Show({ match, locations, deleteLocation, history }) {
+  // Destructuring directly
 
-  const id = props.match.params.id
-  const locations = props.locations
-  const location = locations.find(l => l._id === id)
+  const id = match.params.id;
+  const location = locations.find((l) => l._id === id);
 
-const removeLocation = () => {
-  props.deleteLocations(location._id)
-  props.history.push('/locations')
-}
+  const removeLocation = () => {
+    deleteLocation(location._id);
+    history.push("/locations");
+  };
 
-const loaded = () => (
-  <>
-    <div style={{
-      minHeight: '90%',
-      backgroundColor: '#F8F0E3',
-      margin: '0',
-    }}>
-
-      <FadeIn transitionDuration="1000" delay="300">
-        <h1 id="name" style={{
-          padding: '50px',
-          fontSize: '100px',
-          letterSpacing: '1.5px',
-          }}>
-          {location.name}
-        </h1>
-      </FadeIn>
-
-      <FadeIn transitionDuration="1000" delay="750">
-        <div id="description" style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          <p style={{width: '50%', letterSpacing: '2px', paddingBottom: '50px'}}>{location.notes}</p>
-        </div>
-      </FadeIn>
-
-      <FadeIn transitionDuration="1000" delay="1150">
-        <div id="photos" style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          }}>
-            <img style={{maxWidth: '50%', minWidth:'500px', height: '500px'}} src={location.image} alt={location.name} />
-        </div>
-        <button id="delete" onClick={removeLocation}>Delete</button>
-      </FadeIn>
-    </div>
-  </>
-)
-
-const loading = () => <h1>Loading...</h1>
-
+  if (!location) {
+    return <h1>Location not found</h1>;
+  }
 
   return (
-    <div className="location">
-      {location ? loaded() : loading() }
+    <div className="show-pg-container">
+      <div className="show-pg-content">
+        <FadeIn transitionDuration="1000" delay="300">
+          <h1 className="show-pg-name">{location.name}</h1>
+        </FadeIn>
+
+        <FadeIn transitionDuration="1000" delay="1150">
+          <div className="show-pg-photos">
+            <img src={location.image} alt={location.name} />
+            <FadeIn transitionDuration="1000" delay="750">
+              <div className="show-pg-description">
+                <p>{location.notes}</p>
+              </div>
+            </FadeIn>
+            <button className="show-pg-delete-btn" onClick={removeLocation}>
+              Delete
+            </button>
+          </div>
+        </FadeIn>
+      </div>
     </div>
-  )
+  );
 }
 
+// PropTypes for better type checking and documentation
+Show.propTypes = {
+  match: PropTypes.object.isRequired,
+  locations: PropTypes.array.isRequired,
+  deleteLocation: PropTypes.func.isRequired, // Note: deleteLocation not deleteLocations
+  history: PropTypes.object.isRequired,
+};
 
 export default Show;

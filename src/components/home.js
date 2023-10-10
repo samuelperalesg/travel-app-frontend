@@ -36,7 +36,7 @@ function Home(props) {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error); 
+        throw new Error(errorData.error);
       }
 
       return await response.json();
@@ -89,8 +89,13 @@ function Home(props) {
     try {
       if (!props.user) return;
 
+      const token = await fetchToken(); // Get the user token
+
       const response = await fetch(`${URL}/locations/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`, // Use the token here
+        },
       });
 
       if (response.status === 403) {
@@ -102,7 +107,7 @@ function Home(props) {
         throw new Error("Failed to delete location");
       }
 
-      const token = await fetchToken();
+      // No need to re-declare token, just use the previously declared token
       const data = await fetchLocations(token);
       setLocations(data);
     } catch (error) {
@@ -168,24 +173,23 @@ function Home(props) {
 
     if (!location) return <div>Loading recommendation...</div>;
   // const [location] = useState({
-  //   imageUrl: desertImage,
-  //   imageUrl: "https://wallpapers.com/images/hd/beautiful-view-32hhlcdpg0anl9wm.jpg",
+  //   imageUrl:
+  //     "https://wallpapers.com/images/hd/beautiful-view-32hhlcdpg0anl9wm.jpg",
   //   name: "Mysterious Destination",
   // });
 
   const handleAddLocationClick = () => {
+
     props.history.push("/locations", {
-      newForm: { 
-        name: location.name, 
-        image: location.imageUrl, 
-        notes: "" 
-      }
+      newForm: {
+        name: location.name,
+        image: location.imageUrl,
+        notes: "",
+      },
     });
 
     window.scrollTo(0, 0);
   };
-  
-
 
   // Render component
   return (

@@ -1,27 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+
 
 function Index(props) {
-  const locationState = useLocation().state;
-  const initialFormState = locationState?.newForm || {
-    name: "",
-    image: "",
-    notes: "",
-  };
-
+    const locationState = useLocation().state;
+  
+  
+    const initialFormState = locationState?.newForm || {
+      name: "",
+      image: "",
+      notes: "",
+    };
+  
   const [localLocations, setLocalLocations] = useState([]);
   const [newForm, setNewForm] = useState(initialFormState);
-
+  
+  const formRef = useRef(null);
+  const history = useHistory();
+  
   const handleChange = (event) => {
     setNewForm({ ...newForm, [event.target.name]: event.target.value });
   };
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(formRef.current) {
+      formRef.current.reset();
+    }    
 
     if (props.user) {
       await createLocation(newForm);
+      history.push('/locations');
       window.location.reload();
     } else {
       setLocalLocations([...localLocations, newForm]);
@@ -88,7 +97,7 @@ function Index(props) {
       )}
 
       <div className="idx-pg-form-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} ref={formRef}>
           <input
             type="text"
             value={newForm.name}
