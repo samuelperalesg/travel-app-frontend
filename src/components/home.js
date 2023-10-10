@@ -1,19 +1,23 @@
 import { useState, useEffect, useCallback } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import Index from "../pages/index";
 import Show from "../pages/show";
 import Footer from "../components/footer";
 import FadeIn from "react-fade-in";
 
-import desertImage from "../images/desert_Hd.jpg";
-
 function Home(props) {
-  // State and URL setup
-  const [locations, setLocations] = useState(null);
+  const [locations, setLocations] = useState([]);
   const URL = process.env.REACT_APP_URL;
+
   const LayeredBackground = () => (
-    <div className="layered-background" style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5)), url(${location.imageUrl})` }}></div>
+    <div
+      className="layered-background"
+      style={{
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5)), url(${location.imageUrl})`,
+      }}
+    ></div>
   );
 
   const fetchToken = useCallback(async () => {
@@ -31,7 +35,8 @@ function Home(props) {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch locations");
+        const errorData = await response.json();
+        throw new Error(errorData.error); 
       }
 
       return await response.json();
@@ -48,12 +53,12 @@ function Home(props) {
         const data = await fetchLocations(token);
         setLocations(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching locations:", error.message);
       }
     };
 
     getLocations();
-  }, [props.user, URL, fetchToken, fetchLocations]);
+  }, [props.user, fetchToken, fetchLocations]);
 
   const createLocation = async (location) => {
     try {
@@ -107,66 +112,79 @@ function Home(props) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.pageYOffset;
-      const maxBlur = 20; // Maximum blur at the top
-      const minBlur = 4;  // Minimum blur at the bottom
-      let blurValue = maxBlur - (scrollPosition / 100);
+      const scrollPosition = window.scrollY; // Using scrollY instead of deprecated pageYOffset
+      const maxBlur = 20;
+      const minBlur = 4;
+      let blurValue = maxBlur - scrollPosition / 100;
       blurValue = Math.min(maxBlur, Math.max(minBlur, blurValue));
-      const backgroundLayer = document.querySelector('.layered-background');
-      backgroundLayer.style.filter = `blur(${blurValue}px)`;
+      const backgroundLayer = document.querySelector(".layered-background");
+      if (backgroundLayer) {
+        backgroundLayer.style.filter = `blur(${blurValue}px)`;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-}, []);
+  }, []);
 
-//   const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(null);
 
-//   useEffect(() => {
-//     fetch(`${URL}/api/unsplash/random`)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch from backend");
-//         }
-//         return response.json();
-//       })
-//       .then((data) => {
-//         let imageUrl, locationName;
-    
-//         if (Array.isArray(data) && data[0]) {
-//             imageUrl = data[0].urls?.full;
-//             locationName = data[0].location?.name || "Mysterious Destination";
-//         } else {
-//             imageUrl = data.urls?.full;
-//             locationName = data.location?.name || "Mysterious Destination";
-//         }
-    
-//         if (imageUrl) {
-//             setLocation({
-//                 imageUrl,
-//                 name: locationName
-//             });
-//         } else {
-//             console.error("Unexpected data structure:", data);
-//         }
-//     })
-    
-//       .catch((error) => {
-//         console.error("Failed to fetch recommendation:", error);
-//       });
-// }, [URL]);
+    useEffect(() => {
+      fetch(`${URL}/api/unsplash/random`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch from backend");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          let imageUrl, locationName;
 
+          if (Array.isArray(data) && data[0]) {
+              imageUrl = data[0].urls?.full;
+              locationName = data[0].location?.name || "Mysterious Destination";
+          } else {
+              imageUrl = data.urls?.full;
+              locationName = data.location?.name || "Mysterious Destination";
+          }
 
-//   if (!location) return <div>Loading recommendation...</div>;
-  const [location] = useState({
-    imageUrl: desertImage,
-    name: "Mysterious Destination",
-  });
+          if (imageUrl) {
+              setLocation({
+                  imageUrl,
+                  name: locationName
+              });
+          } else {
+              console.error("Unexpected data structure:", data);
+          }
+      })
 
+        .catch((error) => {
+          console.error("Failed to fetch recommendation:", error);
+        });
+  }, [URL]);
 
+    if (!location) return <div>Loading recommendation...</div>;
+  // const [location] = useState({
+  //   imageUrl: desertImage,
+  //   imageUrl: "https://wallpapers.com/images/hd/beautiful-view-32hhlcdpg0anl9wm.jpg",
+  //   name: "Mysterious Destination",
+  // });
+
+  const handleAddLocationClick = () => {
+    props.history.push("/locations", {
+      newForm: { 
+        name: location.name, 
+        image: location.imageUrl, 
+        notes: "" 
+      }
+    });
+
+    window.scrollTo(0, 0);
+  };
+  
 
 
   // Render component
@@ -198,8 +216,11 @@ function Home(props) {
                 alt={location.name}
                 className="rec-image"
               />
-              <p className="rec-destination-name">{location.name}</p>
+              <div className="add-icon" onClick={handleAddLocationClick}>
+                +
+              </div>
             </div>
+            <p className="rec-destination-name">{location.name}</p>
           </div>
         </Route>
         <Route exact path="/locations">
@@ -207,7 +228,7 @@ function Home(props) {
             user={props.user}
             locations={locations}
             createLocation={createLocation}
-          />{" "}
+          />
         </Route>
         <Route
           path="/locations/:id"
@@ -222,11 +243,11 @@ function Home(props) {
               <Redirect to="/" />
             )
           }
-        />{" "}
-      </Switch>{" "}
+        />
+      </Switch>
       <Footer />
     </>
   );
 }
 
-export default Home;
+export default withRouter(Home);

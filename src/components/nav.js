@@ -14,6 +14,7 @@ function Nav({ user }) {
   const handleLogout = async () => {
     try {
       await firebaseLogout();
+      window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
     }
