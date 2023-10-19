@@ -15,12 +15,23 @@ const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
-function login() {
-    return signInWithPopup(auth, provider);
+async function login() {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        return result;
+    } catch (error) {
+        console.error("Error logging in:", error.message);
+        throw error;
+    }
 }
 
-function logout() {
-    return signOut(auth);
+async function logout() {
+    try {
+        await signOut(auth);
+    } catch (error) {
+        console.error("Error logging out:", error.message);
+        throw error;
+    }
 }
 
 export { login, logout, auth };

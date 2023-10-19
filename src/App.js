@@ -1,47 +1,94 @@
-import { useState, useEffect } from "react";
-import { auth } from "./services/firebase";
-import "./App.css";
-import Nav from "./components/nav";
-import Home from "./components/home";
+import React, { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import Form from "./pages/Form";
+import Timeline from "./pages/Timeline";
+import Footer from "./components/Footer";
+import Show from "./pages/Show";
+import {
+  LocationProvider,
+  useLocationContext,
+} from "./context/LocationContext";
+import * as firebase from "./services/firebase";
+import { UserProvider } from "./context/UserContext";
 
 const pictures = [
-  "https://wallup.net/wp-content/uploads/2016/02/193738-Maldives-beach-sea-nature.jpg",
-  "https://i.imgur.com/E3dmGSp_d.webp?maxwidth=760&fidelity=grand",
+  "https://images7.alphacoders.com/897/897065.jpg",
+  "https://i0.wp.com/www.ramnathsaway.com/wp-content/uploads/2023/04/Hawaiian-Islands.png?resize=1080%2C608&ssl=1",
   "https://i.imgur.com/UGymZ1a_d.webp?maxwidth=1520&fidelity=grand",
   "https://images2.alphacoders.com/458/458495.jpg",
   "https://images.hdqwalls.com/download/maldives-tl-2880x1800.jpg",
   "https://images3.alphacoders.com/750/75027.jpg",
   "https://free4kwallpapers.com/uploads/originals/2017/02/17/sunset-at-turnagain-arm-alaska-wallpaper.jpg",
-  "https://free4kwallpapers.com/uploads/originals/2020/05/31/anchorage-alaska-wallpaper.jpg",
 ];
 
+function AppRoutes({ user, background }) {
+  const { state: locationState } = useLocationContext();
+
+  if (!locationState || !locationState.locations) {
+    return <div>Loading locations...</div>;
+  }
+
+  return (
+    <Switch>
+      <Route exact path="/">
+        <Home img={background} />
+      </Route>
+      <Route
+        path="/locations/:id"
+        render={(props) => {
+          return (
+            <Show
+              {...props}
+              locations={locationState.locations}
+              deleteLocation={locationState.removeLocation}
+            />
+          );
+        }}
+      />
+      <Route path="/locations">
+        <Timeline user={user} />
+      </Route>
+      <Route
+        path="/create-location"
+        render={(props) => (
+          <Form {...props} createLocation={locationState.addLocation} />
+        )}
+      />
+    </Switch>
+  );
+}
+
 function App() {
-  const [background] = useState(pictures[Math.floor(Math.random() * pictures.length)]);
+  const [background] = useState(
+    pictures[Math.floor(Math.random() * pictures.length)]
+  );
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      try {
-        setUser(user);
-      } catch (err) {
-        setError(err.message);
-      }
+    const unsubscribe = firebase.auth.onAuthStateChanged((user) => {
+      setUser(user);
+      setLoading(false);
     });
 
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (
     <main className="App">
-      <Nav user={user} />
-      <Home id="home" img={background} user={user} alt="background vacation scene" />
+      <UserProvider value={{ state: { user: user, loggedIn: !!user } }}>
+        <LocationProvider user={user}>
+          <Nav user={user} />
+          <AppRoutes user={user} background={background} />
+          <Footer />
+        </LocationProvider>
+      </UserProvider>
     </main>
   );
 }
