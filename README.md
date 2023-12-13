@@ -30,8 +30,8 @@ To experience WorldTraveler, [click here]("").
 
 **Views:**
 - **Home View**: ![Home View](https://imgur.com/XdsolSq.png)
-- **Add Location View**: ![Add Location View](https://imgur.com/aJL8qBO)
-- **Locations View**: ![Locations View](https://imgur.com/VaYheQF)
+- **Add Location View**: ![Add Location View](https://imgur.com/dnBMcJ5.png)
+- **Locations View**: ![Locations View](https://imgur.com/VaYheQF.png)
 
 **Wireframes and Diagrams:**
 - **Wireframes**: ![Wireframes](https://imgur.com/jIGDtde.png)
