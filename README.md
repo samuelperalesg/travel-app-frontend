@@ -4,6 +4,9 @@
 
 Welcome to **WorldTraveler**! This application serves as a dynamic vacation planner and dream destination tracker. Whether you're meticulously planning your next trip or just dreaming about faraway places, WorldTraveler is your go-to platform. The app allows users to add, manage, and visualize their future travels or bucket list destinations in an intuitive and visually appealing way.
 
+## Project Management
+Track our progress and updates on our [Trello Board](https://trello.com/invite/b/kIpSU5vC/ATTI8fd4db2caccab741ea2bd916027e99809892C4CB/travel-app).
+
 The technologies and tools used in the WorldTraveler project include:
 
 **Frontend:**
@@ -45,9 +48,6 @@ Here's how to get started:
 ## Future Enhancements
 - Implementing a 'Previously Traveled' section to keep track of past journeys.
 - Continuous updates to enhance user experience and add more functionality.
-
-## Project Management
-Track our progress and updates on our [Trello Board](https://trello.com/invite/b/kIpSU5vC/ATTI8fd4db2caccab741ea2bd916027e99809892C4CB/travel-app).
 
 ## Backend Integration
 For more technical details, visit our backend repository: [Backend Repository](https://github.com/samuelperalesg/travel-app-backend).
