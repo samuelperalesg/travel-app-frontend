@@ -13,7 +13,7 @@ Express<br />
 ![Screen Shot 2022-02-04 at 8 19 52 AM](https://user-images.githubusercontent.com/94932808/152544681-493a49e9-26c6-4254-aaeb-4b2f0cd4494a.png)
 
 GETTING STARTED<br />
-Trello: https://trello.com/b/2VLmE6jn/vacation-board
+Trello: https://trello.com/invite/b/kIpSU5vC/ATTI8fd4db2caccab741ea2bd916027e99809892C4CB/travel-app
 
 
 FUTURE ENHANCEMENTS<br />
