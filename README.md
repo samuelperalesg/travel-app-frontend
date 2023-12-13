@@ -4,14 +4,24 @@
 
 Welcome to **WorldTraveler**! This application serves as a dynamic vacation planner and dream destination tracker. Whether you're meticulously planning your next trip or just dreaming about faraway places, WorldTraveler is your go-to platform. The app allows users to add, manage, and visualize their future travels or bucket list destinations in an intuitive and visually appealing way.
 
-## Technologies Used
-- **React**: For building a dynamic and responsive user interface.
-- **JavaScript**: To make the web application interactive.
-- **CSS**: For styling and enhancing the visual appearance.
-- **HTML**: The backbone of the application's structure.
-- **MongoDB**: As a database for storing user data.
-- **Express**: To handle HTTP requests and responses.
-- **Firebase**: For user authentication and management.
+The technologies and tools used in the WorldTraveler project include:
+
+**Frontend:**
+1. **React**: A JavaScript library for building user interfaces.
+2. **JavaScript**: The programming language used for creating dynamic web content.
+3. **CSS**: Used for styling the frontend components.
+4. **HTML**: The standard markup language for creating web pages.
+5. **Firebase**: A platform developed by Google for creating mobile and web applications, used here for authentication and other services.
+6. **React Router DOM**: A library for handling routing in React applications.
+
+**Backend:**
+1. **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine.
+2. **Express.js**: A web application framework for Node.js.
+3. **Mongoose**: An Object Data Modeling (ODM) library for MongoDB and Node.js.
+4. **MongoDB**: A NoSQL database used to store application data.
+5. **Firebase Admin**: A backend service for Firebase functionalities.
+6. **Morgan**: HTTP request logger middleware for Node.js.
+7. **Cors**: A node.js package for providing a Connect/Express middleware that can be used to enable CORS (Cross-Origin Resource Sharing).
 
 ## Screenshots
 ![WorldTraveler Screenshot]("")
