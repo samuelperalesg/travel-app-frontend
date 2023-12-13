@@ -23,12 +23,19 @@ The technologies and tools used in the WorldTraveler project include:
 6. **Morgan**: HTTP request logger middleware for Node.js.
 7. **Cors**: A node.js package for providing a Connect/Express middleware that can be used to enable CORS (Cross-Origin Resource Sharing).
 
-## Screenshots
-![WorldTraveler Screenshot]("")
-*WorldTraveler Interface*
-
 ## Getting Started
 To experience WorldTraveler, [click here](""). 
+
+### Screenshot(s)
+
+**Views:**
+- **Home View**: ![Home View](https://imgur.com/XdsolSq.png)
+- **Add Location View**: ![Add Location View](https://imgur.com/aJL8qBO)
+- **Locations View**: ![Locations View](https://imgur.com/VaYheQF)
+
+**Wireframes and Diagrams:**
+- **Wireframes**: ![Wireframes](https://imgur.com/jIGDtde.png)
+- **ERD (Entity Relationship Diagram)**: ![ERD](https://imgur.com/OgxtjbW.png)
 
 Here's how to get started:
 1. Access the link to open WorldTraveler.
