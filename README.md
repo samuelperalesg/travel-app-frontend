@@ -3,7 +3,7 @@
 # WorldTraveler
 
 ## Getting Started
-To experience WorldTraveler, [click here]("https://worldtraveler.onrender.com").
+To experience WorldTraveler, [click here](https://worldtraveler.onrender.com).
 
 Welcome to **WorldTraveler**! This application serves as a dynamic vacation planner and dream destination tracker. Whether you're meticulously planning your next trip or just dreaming about faraway places, WorldTraveler is your go-to platform. The app allows users to add, manage, and visualize their future travels or bucket list destinations in an intuitive and visually appealing way.
 
