@@ -2,6 +2,9 @@
 
 # WorldTraveler
 
+## Getting Started
+To experience WorldTraveler, [click here]("https://worldtraveler.onrender.com").
+
 Welcome to **WorldTraveler**! This application serves as a dynamic vacation planner and dream destination tracker. Whether you're meticulously planning your next trip or just dreaming about faraway places, WorldTraveler is your go-to platform. The app allows users to add, manage, and visualize their future travels or bucket list destinations in an intuitive and visually appealing way.
 
 ## Project Management
@@ -24,10 +27,7 @@ The technologies and tools used in the WorldTraveler project include:
 4. **MongoDB**: A NoSQL database used to store application data.
 5. **Firebase Admin**: A backend service for Firebase functionalities.
 6. **Morgan**: HTTP request logger middleware for Node.js.
-7. **Cors**: A node.js package for providing a Connect/Express middleware that can be used to enable CORS (Cross-Origin Resource Sharing).
-
-## Getting Started
-To experience WorldTraveler, [click here](""). 
+7. **Cors**: A node.js package for providing a Connect/Express middleware that can be used to enable CORS (Cross-Origin Resource Sharing). 
 
 ### Screenshot(s)
 
