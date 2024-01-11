@@ -2,15 +2,15 @@ import {
   login as firebaseLogin,
   logout as firebaseLogout,
 } from "../services/firebase";
-import { Link, useHistory } from "react-router-dom"; // <-- Import useHistory here
+import { Link, useHistory } from "react-router-dom";
 import FadeIn from "react-fade-in";
 
 function Nav({ user }) {
-  const history = useHistory(); // <-- Use the useHistory hook here
+  const history = useHistory();
 
   const handleLogin = async () => {
     try {
-      history.push("/"); // Redirect to the Home Page after successful login
+      history.push("/");
       await firebaseLogin();
       if (user) {
         sessionStorage.removeItem("locations");
@@ -23,7 +23,7 @@ function Nav({ user }) {
   const handleLogout = async () => {
     try {
       await firebaseLogout();
-      history.push("/"); // <-- Redirect to the Home Page after successful logout
+      history.push("/");
       window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);

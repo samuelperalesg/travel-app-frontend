@@ -16,7 +16,6 @@ function Home(props) {
   };
 
   useEffect(() => {
-    // Only fetch if there isn't already a default location.
     if (!location || !location.imageUrl) {
       fetchAndSetLocation();
     }

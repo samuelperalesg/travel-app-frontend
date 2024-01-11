@@ -12,6 +12,7 @@ import {
 } from "./context/LocationContext";
 import * as firebase from "./services/firebase";
 import { UserProvider } from "./context/UserContext";
+import rotatePhoneImage from './images/rotate_phone.png';
 
 const pictures = [
   "https://images7.alphacoders.com/897/897065.jpg",
@@ -61,6 +62,19 @@ function AppRoutes({ user, background }) {
 }
 
 function App() {
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setShowOverlay(window.innerWidth < 500);
+    };
+    
+    window.addEventListener('resize', checkWidth);
+    checkWidth();
+    
+    return () => window.removeEventListener('resize', checkWidth);
+  }, []);
+
   const [background] = useState(
     pictures[Math.floor(Math.random() * pictures.length)]
   );
@@ -82,6 +96,14 @@ function App() {
 
   return (
     <main className="App">
+      {showOverlay && (
+        <div id="rotate-overlay" className={showOverlay ? "show" : ""}>
+          <div className="rotate-device">
+            <img src={rotatePhoneImage} alt="Rotate Device" />
+          </div>
+        </div>
+      )}
+
       <UserProvider value={{ state: { user: user, loggedIn: !!user } }}>
         <LocationProvider user={user}>
           <Nav user={user} />
